@@ -11,6 +11,12 @@
     <title>学生管理</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"/>
     <script src="${pageContext.request.contextPath}/back/statics/js/jquery-1.8.3.min.js"></script>
+    <style type="text/css">
+        .div1{
+            display: inline;
+        }
+
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -119,7 +125,9 @@
                             </td>
                             <td>
                                 <c:if test="${sessionScope.user.role=='admin'}">
-                                    <a href="" class="btn btn-info">修改</a>
+                                    <form class="div1" action="${pageContext.request.contextPath}/student/update/${student.id}" method="post">
+                                    <button class="btn btn-info">修改</button>
+                                    </form>
                                     <a href="" class="btn btn-danger">删除</a>
                                 </c:if>
                                 <c:if test="${sessionScope.user.role!='admin'}">
