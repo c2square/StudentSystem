@@ -37,15 +37,6 @@
                     <label for="password">密码:</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码...">
                 </div>
-                <div class="form-group">
-                    <label for="code">验证码:</label>
-                    <div>
-                        <input type="text" name="code" class="form-control" style="height:48px;width: 52%;float: left;"
-                               id="code" placeholder="请输入验证码....">
-                        <img src="${pageContext.request.contextPath}/user/getImage" id="image"
-                             style="height:48px;float: right;" alt="">
-                    </div>
-                </div>
                 <div class="clearfix"></div>
                 <button type="button" class="btn btn-danger" id="logBtn"
                         style="margin-top:20px;width: 43%;margin-left: 13px;">登录

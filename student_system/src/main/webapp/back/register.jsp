@@ -43,13 +43,6 @@
                             <option value="student">学生</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="code">验证码:</label>
-                        <div>
-                            <input type="text" name="code" class="form-control" style="height:48px;width: 50%;float: left;" id="code" placeholder="请输入验证码....">
-                            <img src="${pageContext.request.contextPath}/user/getImage" id="image" style="height:48px;float: right;" alt="">
-                        </div>
-                    </div>
                     <div class="clearfix"></div>
                     <button type="button" id="regBtn" class="btn btn-danger" style="margin-top:20px;width: 42%;margin-left: 10px;">立即注册</button>
                     <a href="${pageContext.request.contextPath}/back/login.jsp" class="btn btn-info" style="margin-top:20px;width: 42%;margin-left: 30px;">返回登录</a>

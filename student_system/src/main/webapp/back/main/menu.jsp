@@ -17,16 +17,6 @@
     <li class="list-group-item"><a href="${pageContext.request.contextPath}/student/findAll" target="content">学生管理</a>
     </li>
 
-    <c:if test="${sessionScope.user.role=='admin'}">
-        <li class="list-group-item"><a href="${pageContext.request.contextPath}/group/findAll" target="content">小组管理</a>
-        </li>
-        <li class="list-group-item"><a href="${pageContext.request.contextPath}/clazz/findAll" target="content">班级管理</a>
-        </li>
-        <li class="list-group-item"><a href="${pageContext.request.contextPath}/tag/findAll" target="content">标签管理</a>
-        </li>
-        <li class="list-group-item"><a href="${pageContext.request.contextPath}/city/findAll" target="content">城市管理</a>
-        </li>
-    </c:if>
 
 </ul>
 </body>
