@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -19,17 +20,40 @@ import java.util.List;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
-
-
-
-    @Autowired
+    //@Autowired
     private StudentDAO studentDAO;
-
     @Autowired
+    public void setStudentDAO(StudentDAO studentDAO){
+        this.studentDAO = studentDAO;
+    }
+
+    //@Autowired
     private StudentTagDAO studentTagDAO;
-
     @Autowired
+    public void setStudentTagDAO(StudentTagDAO studentTagDAO){
+        this.studentTagDAO = studentTagDAO;
+    }
+
+    //@Autowired
     private CityDAO cityDAO;
+    @Autowired
+    public void setCityDAO(CityDAO cityDAO){
+        this.cityDAO = cityDAO;
+    }
+
+    public void modify(String name, String age, String bir,
+                       String phone, String qq, String attr,
+                       String starts, String mark, String id){
+
+        studentDAO.modify(name, age, bir, phone, qq, attr, starts, mark, id);
+    }
+
+
+    public Student update(Integer id){
+        Student student = studentDAO.findById(id.toString());
+        System.out.println(student.getName());
+        return student;
+    }
 
     @Override
     public void save(Student student, String[] tagIds) {

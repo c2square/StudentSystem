@@ -3,10 +3,12 @@ package com.baizhi.dao;
 import com.baizhi.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface StudentDAO extends BaseDAO<Student,String> {
 
 
@@ -23,4 +25,6 @@ public interface StudentDAO extends BaseDAO<Student,String> {
 
     //根据小组id获取对应学生信息
     List<Student> findByGroupId(String id);
+
+    void modify(String name, String age, String bir, String phone, String qq, String attr, String starts, String mark, String id);
 }
