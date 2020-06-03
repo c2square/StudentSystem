@@ -1,0 +1,179 @@
+项目思路:
+	
+	需求分析    库表设计(概要设计)  详细设计(花草图,库表 伪代码 流程标注)  编码(技术选型+编码 
+																	环境搭建+业务模块的编码)
+===========================================================================================
+1.需求分析
+
+	a. 用户模块
+		用户登录
+		用户注册																
+
+		注意: 用户在系统中存在两种角色  一种是 管理员 admin  另一种 学生角色 student
+
+
+	b.学生模块 
+
+		查询学生信息  添加  删除 修改   模糊搜索学生信息
+
+	
+	c.就业城市模块
+
+		添加  查询就业城市
+
+	d.班级模块
+
+		增删改查 
+
+		注意: 班级可以去绑定标签   一个班级只能有一个标签
+
+	e.小组模块
+
+		增删改查
+
+		注意: 小组可以绑定标签  小组标签等于组内学生标签的交集
+
+	f.标签模块
+		增删改查
+
+		注意: 
+			1.标签可以绑定给学生 当绑定给学生时一个标签可以对应多个学生  一个学生同时也可以拥有多个标签
+			2.标签可以绑定给班级 当绑定给班级模块 一个标签可以对应多个班级  但是一个班级只能对应一个标签
+
+2.库表设计
+
+
+	1.分析一个系统中有多少张表   表的数量?   表与表之间的关系?
+
+	2.分析每个表中的字段个数     表中有哪些字段? 
+
+	3.分析字段是否要存储在数据库  字段存储  业务字段 字段  经验字段 ?
+
+	注意: 库表设计为了完成系统功能 
+
+
+	/*用户表*/
+	create table t_user(
+		id int(6) primary key auto_increment,
+		name varchar(40),
+		password varchar(20),
+		status varchar(10),
+		regtime timestamp,
+		role  varchar(10)
+	);
+
+	/*城市表*/
+	create table t_city(
+		id int(6) primary key auto_increment,
+		name varchar(40),
+		createtime timestamp,
+		numbers int(8)
+	);
+
+	/*标签表*/
+	create table t_tag(
+		id int(6) primary key auto_increment,
+		name varchar(40),
+		type varchar(20),
+		createtime timestamp
+	);
+
+	/*班级表*/
+	create table t_clazz(
+		id int(6) primary key auto_increment,
+		name varchar(40),
+		tagid int(6) references t_tag(id)
+	);
+
+	/*小组表*/
+	create table t_group(
+		id  int(6) primary key auto_increment,
+		name varchar(40),
+		content varchar(200),
+		clazzid int(6) references t_clazz(id)
+	);
+
+	/*学生表*/
+	create table t_student(
+		id  int(6) primary key auto_increment,
+		name varchar(40),
+		age int(3),
+		bir timestamp,
+		phone varchar(11),
+		qq    varchar(16),
+		attr  varchar(6),
+		starts varchar(14),
+		mark   varchar(200),
+		cityid int(6) references t_city(id),
+		clazzid int(6) references t_clazz(id),
+		groupid int(6) references t_group(id)
+	);
+
+	/*学生标签关系表*/
+	create table t_student_tag(
+		id int(6) primary key auto_increment,
+		studentid int(6) references t_student(id),
+		tagid int(6) references t_tag(id),
+	);
+
+	建立数据库: student_system   UTF-8
+
+==================================================================================================
+编码环节:
+
+	技术选型:  springboot +  jsp + mybatis  + bootstrap + ajax + jquery
+
+	页面:     简单 html  
+
+	环境搭建:
+
+		1).创建项目
+		2).引入依赖  
+			spring-boot-starter-web
+			myabtis-spring-boot-starter
+			mysql
+			lombok
+			devtools
+			druid
+			jstl
+			tomcat-embed-jasper
+
+
+
+==============================================================
+用户模块
+	用户登录
+	用户注册
+
+城市模块  添加 和 查询  删除  修改
+
+标签模块  
+
+班级模块
+
+小组模块
+
+	标签: 小组标签   ===  组内学生标签的交集
+
+		 1组       张三 帅哥 学渣   李四 帅哥,玩世不恭    王五 帅哥 ,不爱学习
+
+		 计算方式:  小组标签 = 组内学生标签的交集 
+
+		 		   组内每个学生的某个标签之和  = 组内学生的数量 
+
+		 		计算方式: 标签出现次数和组内学生个数一致 这个标签一点是组标签
+
+学生模块
+	
+
+
+
+
+
+
+	
+
+
+
+
+
