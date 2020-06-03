@@ -7,9 +7,19 @@
 
     <!--保存学生信息-->
     <insert id="save" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
-        insert into t_student values (#{id},#{name},#{age},#{bir},#{phone},#{qq},#{attr},#{starts},#{mark},#{cityid},#{clazzid},#{groupid})
+        <!--insert into t_student values (#{id},#{name},#{age},#{bir},#{phone},#{qq},#{attr},#{starts},#{mark},#{cityid},#{clazzid},#{groupid})-->
+        replace into t_student values (#{id},#{name},#{age},#{bir},#{phone},#{qq},#{attr},#{starts},#{mark},#{cityid},#{clazzid},#{groupid})
     </insert>
 
+    <select id="findById" parameterType="string" resultType="Student">
+        select * from t_student where id = #{id}
+    </select>
+
+    <update id="modify" parameterType="string">
+        update t_student set name = #{name}, age = #{age}, bir = #{bir},
+    phone = #{phone}, qq = #{qq}, attr = #{attr}, starts = #{starts},
+    mark = #{mark} where id = #{id}
+    </update>
 
     <select id="findByGroupId" parameterType="String" resultMap="studentMap">
          select s.id,s.name,s.age,s.bir,s.phone,s.qq,s.attr,s.starts,s.mark,s.cityid,s.clazzid,s.groupid,
