@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -16,8 +18,42 @@ import java.util.List;
 public class StudentController {
 
 
-    @Autowired
+    //@Autowired
+    private Integer id;
+
     private StudentService studentService;
+    @Autowired
+    public void setStudentService(StudentService studentService){
+        this.studentService = studentService;
+    }
+
+    //学生修改方法
+    @RequestMapping("update/{id}")
+    public String update(@PathVariable("id") Integer id, Model model){
+        //System.out.println(id);
+        //Student =
+        this.id = id;
+        Student student = studentService.update(id);
+        System.out.println(student.getName());
+        //return "redirect:/student/findAll";
+        model.addAttribute("name", student.getName());
+        model.addAttribute("age", student.getAge());
+        model.addAttribute("bir", new SimpleDateFormat("yyyy-MM-dd").format(student.getBir()).toString());
+        model.addAttribute("phone", student.getPhone());
+        model.addAttribute("qq", student.getQq());
+        model.addAttribute("attr", student.getAttr());
+        model.addAttribute("starts", student.getStarts());
+        model.addAttribute("mark", student.getMark());
+        return "back/student/modify";
+    }
+
+    @RequestMapping("modify")
+    public String modify(String name, String age, String bir,
+                         String phone, String qq, String attr,
+                         String starts, String mark){
+        studentService.modify(name, age, bir, phone, qq, attr, starts, mark, id.toString());
+        return "redirect:/student/findAll";
+    }
 
     //学生添加方法
     @RequestMapping("save")
