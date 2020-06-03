@@ -20,4 +20,9 @@ public interface StudentService {
 
     //保存学生信息同时保存学生标签信息
     void save(Student student,String[] tagIds);
+
+    Student update(Integer id);
+
+    void modify(String name, String age, String bir, String phone, String qq,
+                String attr, String starts, String mark, String id);
 }
