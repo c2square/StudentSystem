@@ -30,7 +30,7 @@ public class CityController {
     public String findAll(Model model){
         List<City> cities = cityService.findAll();
         model.addAttribute("citys",cities);
-        return "back/city/index";  //===>/back/city/index.jsp
+        return "back/city/index";
     }
 
     //查询所有城市列表返回JSON类型的数据

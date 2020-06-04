@@ -30,7 +30,7 @@ public class UserController {
     }
 
 
-    //用户登录
+    /**用户登录*/
     @RequestMapping("login")
     @ResponseBody
     public Result login(User user,String code,HttpSession session){
@@ -40,7 +40,7 @@ public class UserController {
         return result.setMsg("登录成功").setStatus(true);
     }
 
-    //用户注册
+    /**用户注册*/
     @RequestMapping("register")
     @ResponseBody
     public Result register(User user,String code,HttpSession session) {

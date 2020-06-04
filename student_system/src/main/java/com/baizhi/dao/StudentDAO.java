@@ -27,4 +27,5 @@ public interface StudentDAO extends BaseDAO<Student,String> {
     List<Student> findByGroupId(String id);
 
     void modify(String name, String age, String bir, String phone, String qq, String attr, String starts, String mark, String id);
+    void delete(String name, String age, String bir, String phone, String qq, String attr, String starts, String mark, String id);
 }

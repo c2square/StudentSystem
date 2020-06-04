@@ -41,6 +41,7 @@ public class StudentServiceImpl implements StudentService {
         this.cityDAO = cityDAO;
     }
 
+    @Override
     public void modify(String name, String age, String bir,
                        String phone, String qq, String attr,
                        String starts, String mark, String id){
@@ -49,6 +50,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
+    @Override
     public Student update(Integer id){
         Student student = studentDAO.findById(id.toString());
         System.out.println(student.getName());
@@ -102,4 +104,19 @@ public class StudentServiceImpl implements StudentService {
     public Integer totalCounts(String searchCol, String searchValue) {
         return studentDAO.totalCounts(searchCol,searchValue);
     }
+
+    @Override
+    public void delete(String name, String age, String bir,
+                       String phone, String qq, String attr,
+                       String starts, String mark, String id){
+
+        studentDAO.delete(name, age, bir, phone, qq, attr, starts, mark, id);
+    }
+    @Override
+    public Student del(Integer id){
+        Student student = studentDAO.findById(id.toString());
+        System.out.println(student.getName());
+        return student;
+    }
+
 }

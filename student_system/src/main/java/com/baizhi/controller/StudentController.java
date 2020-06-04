@@ -18,7 +18,6 @@ import java.util.List;
 public class StudentController {
 
 
-    //@Autowired
     private Integer id;
 
     private StudentService studentService;
@@ -35,7 +34,7 @@ public class StudentController {
         this.id = id;
         Student student = studentService.update(id);
         System.out.println(student.getName());
-        //return "redirect:/student/findAll";
+
         model.addAttribute("name", student.getName());
         model.addAttribute("age", student.getAge());
         model.addAttribute("bir", new SimpleDateFormat("yyyy-MM-dd").format(student.getBir()).toString());
@@ -66,11 +65,12 @@ public class StudentController {
         studentService.save(student,tagIds);
         return "redirect:/student/findAll";
     }
+
     //学生查询所有 分页 模糊
     @RequestMapping("findAll")
     public String findAll(Integer pageNow,Integer rows,String searchCol,String searchValue,Model model){
         pageNow = pageNow==null?1:pageNow;
-        rows  = rows==null?4:rows;
+        rows  = rows==null?10:rows;
         List<Student> students = studentService.findAll(pageNow,rows,searchCol,searchValue);
         //总条数
         Integer counts = studentService.totalCounts(searchCol,searchValue);
@@ -82,5 +82,32 @@ public class StudentController {
         model.addAttribute("searchValue",searchValue);
         model.addAttribute("searchCol",searchCol);
         return "back/student/index";
+    }
+
+    //学生删除方法
+    @RequestMapping("del/{id}")
+    public String delete(@PathVariable("id") Integer id, Model model){
+        //System.out.println(id);
+        //Student =
+        this.id = id;
+        Student student = studentService.del(id);
+        System.out.println(student.getName());
+        //return "redirect:/student/findAll";
+        model.addAttribute("name", student.getName());
+        model.addAttribute("age", student.getAge());
+        model.addAttribute("bir", new SimpleDateFormat("yyyy-MM-dd").format(student.getBir()).toString());
+        model.addAttribute("phone", student.getPhone());
+        model.addAttribute("qq", student.getQq());
+        model.addAttribute("attr", student.getAttr());
+        model.addAttribute("starts", student.getStarts());
+        model.addAttribute("mark", student.getMark());
+        return "back/student/delete";
+    }
+    @RequestMapping("delete")
+    public String delete(String name, String age, String bir,
+                         String phone, String qq, String attr,
+                         String starts, String mark){
+        studentService.delete(name, age, bir, phone, qq, attr, starts, mark, id.toString());
+        return "redirect:/student/findAll";
     }
 }

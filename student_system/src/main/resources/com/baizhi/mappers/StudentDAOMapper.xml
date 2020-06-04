@@ -7,13 +7,16 @@
 
     <!--保存学生信息-->
     <insert id="save" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
-        <!--insert into t_student values (#{id},#{name},#{age},#{bir},#{phone},#{qq},#{attr},#{starts},#{mark},#{cityid},#{clazzid},#{groupid})-->
         replace into t_student values (#{id},#{name},#{age},#{bir},#{phone},#{qq},#{attr},#{starts},#{mark},#{cityid},#{clazzid},#{groupid})
     </insert>
 
     <select id="findById" parameterType="string" resultType="Student">
         select * from t_student where id = #{id}
     </select>
+
+    <delete id="delete" parameterType="string">
+        delete from t_student  where id = #{id}
+    </delete>
 
     <update id="modify" parameterType="string">
         update t_student set name = #{name}, age = #{age}, bir = #{bir},

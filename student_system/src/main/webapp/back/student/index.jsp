@@ -128,7 +128,11 @@
                                     <form class="div1" action="${pageContext.request.contextPath}/student/update/${student.id}" method="post">
                                     <button class="btn btn-info">修改</button>
                                     </form>
-                                    <a href="" class="btn btn-danger">删除</a>
+
+                                    <form class="div1" action="${pageContext.request.contextPath}/student/del/${student.id}" method="post">
+                                        <button class="btn btn-danger">删除</button>
+                                    </form>
+
                                 </c:if>
                                 <c:if test="${sessionScope.user.role!='admin'}">
                                     暂无权限!!!
