@@ -3,64 +3,43 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
-            content or informatio...</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-
-        <p>磁盘使用率:(40%)</p>
+        <h1>欢迎使用该学生管理系统!</h1>
+        <p>creator: 陈晨 钟京华 刘衍伦 曾渝 郭晏桐</p>
+            <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/back/login.jsp"
+                  target="_top" role="button">点击登录</a></p>
+        <p>陈晨:  用springboot将前后端联合</p>
         <div class="progress">
-            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40"
-                 aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                <span class="sr-only">40% Complete (success)</span>
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20"
+                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete (success)</span>
             </div>
         </div>
-        <p>内存使用率:(20%)</p>
+        <p>钟京华: 使用mybatis，数据操作功能设计——查找&删除</p>
         <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20"
-                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                 aria-valuemin="20" aria-valuemax="100" style="width: 20%">
                 <span class="sr-only">20% Complete</span>
             </div>
         </div>
-        <p>cpu使用率:(60%)</p>
+        <p>刘衍伦: 使用mybatis，数据操作功能设计——增加&修改</p>
         <div class="progress">
-            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60"
-                 aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                <span class="sr-only">60% Complete (warning)</span>
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="20"
+                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete (warning)</span>
             </div>
         </div>
-        <p>数据库使用率:(80%)</p>
+        <p>曾渝:  设计数据库&表，设计DAO，用户规划权限</p>
         <div class="progress">
-            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80"
-                 aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                <span class="sr-only">80% Complete (danger)</span>
+            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20"
+                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete (danger)</span>
             </div>
         </div>
-
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="${pageContext.request.contextPath}/back/statics/images/home.jpeg" >
-                    <div class="caption">
-                        <h3>班级管理系统V1.0</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="${pageContext.request.contextPath}/back/statics/images/home.jpeg" >
-                    <div class="caption">
-                        <h3>班级管理系统V1.0</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="${pageContext.request.contextPath}/back/statics/images/home.jpeg" >
-                    <div class="caption">
-                        <h3>班级管理系统V1.0</h3>
-                    </div>
-                </div>
+        <p>郭晏桐: jsp页面编写，接受后端传入的数据进行展示</p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20"
+                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete (danger)</span>
             </div>
         </div>
     </div>
