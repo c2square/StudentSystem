@@ -35,9 +35,13 @@ public class UserController {
     @ResponseBody
     public Result login(User user,String code,HttpSession session){
         Result result = new Result();
-        User userDB = userService.login(user);
-        session.setAttribute("user",userDB);
-        return result.setMsg("登录成功").setStatus(true);
+        try {
+            User userDB = userService.login(user);
+            session.setAttribute("user", userDB);
+            return result.setMsg("登录成功").setStatus(true);
+        } catch (RuntimeException e) {
+            return result.setMsg(e.getMessage()).setStatus(false);
+        }
     }
 
     /**用户注册*/
@@ -45,8 +49,12 @@ public class UserController {
     @ResponseBody
     public Result register(User user,String code,HttpSession session) {
         Result result = new Result();
-        userService.register(user);
-        return result.setMsg("注册成功").setStatus(true);
+        try {
+            userService.register(user);
+            return result.setMsg("注册成功").setStatus(true);
+        } catch (RuntimeException e) {
+            return result.setMsg("用户名重复").setStatus(false);
+        }
     }
 
 

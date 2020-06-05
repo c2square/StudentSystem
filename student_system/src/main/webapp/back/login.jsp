@@ -66,10 +66,5 @@
                 }
             })
         });
-        //更换验证码
-        $("#image").click(function () {
-            $(this).attr("src", "${pageContext.request.contextPath}/user/getImage?id=" + Math.random());
-        })
-
     })
 </script>

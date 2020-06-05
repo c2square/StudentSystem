@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
             }
             throw new RuntimeException("密码输入错误~~");
         }
-        throw new RuntimeException("用户名输入错误~~");
+        throw new RuntimeException("用户名不存在");
     }
 
     @Override
