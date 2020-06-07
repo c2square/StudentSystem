@@ -39,8 +39,7 @@
                     <div class="form-group">
                         <label for="role">角色选择:</label>
                         <select name="role" class="form-control" id="role">
-<%--                            <option value="admin">管理员</option>--%>
-                            <option value="student">学生</option>
+                            <option value="teacher">老师</option>
                         </select>
                     </div>
                     <div class="clearfix"></div>
@@ -75,10 +74,6 @@
 
         });
 
-        //更换验证码
-        $("#image").click(function () {
-            $(this).attr("src","${pageContext.request.contextPath}/user/getImage?id="+Math.random());
-        })
 
     })
 </script>

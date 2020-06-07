@@ -57,16 +57,16 @@ public class StudentController {
     //学生添加方法
     @RequestMapping("save")
     public String save(Student student,String[] tagIds){
-        log.info("student: "+student);
-        log.info("tagIds: ");
-        for (String tagId : tagIds) {
-            System.out.println(tagId);
+        try {
+            studentService.save(student, tagIds);
+            return "redirect:/student/findAll";
+        } catch (Exception e) {
+            System.out.println(e);
+            return "redirect:/student/add.jsp";
         }
-        studentService.save(student,tagIds);
-        return "redirect:/student/findAll";
+
     }
 
-    //学生查询所有 分页 模糊
     @RequestMapping("findAll")
     public String findAll(Integer pageNow,Integer rows,String searchCol,String searchValue,Model model){
         pageNow = pageNow==null?1:pageNow;
@@ -87,12 +87,10 @@ public class StudentController {
     //学生删除方法
     @RequestMapping("del/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
-        //System.out.println(id);
-        //Student =
+
         this.id = id;
         Student student = studentService.del(id);
         System.out.println(student.getName());
-        //return "redirect:/student/findAll";
         model.addAttribute("name", student.getName());
         model.addAttribute("age", student.getAge());
         model.addAttribute("bir", new SimpleDateFormat("yyyy-MM-dd").format(student.getBir()).toString());
@@ -103,6 +101,7 @@ public class StudentController {
         model.addAttribute("mark", student.getMark());
         return "back/student/delete";
     }
+
     @RequestMapping("delete")
     public String delete(String name, String age, String bir,
                          String phone, String qq, String attr,

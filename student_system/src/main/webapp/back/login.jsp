@@ -54,7 +54,6 @@
 
 <script>
     $(function () {
-
         //绑定登录按钮的单击事件
         $("#logBtn").click(function () {
             $.post("${pageContext.request.contextPath}/user/login", $("#inputForm").serialize(), function (res) {

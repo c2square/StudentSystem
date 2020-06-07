@@ -8,12 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<%--
-    frameset使用时不能存在body标签
-    cols:将页面划分的列数
-    rows:将页面划分的行数
-    注意: 在一个frameset标签上  cols rows不能同时出现
---%>
+
 <frameset rows="50px,*" border="1px" noresize="noresize">
 
     <%--引入标题--%>

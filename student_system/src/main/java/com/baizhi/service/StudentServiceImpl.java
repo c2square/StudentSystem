@@ -53,34 +53,40 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student update(Integer id){
         Student student = studentDAO.findById(id.toString());
-        System.out.println(student.getName());
         return student;
     }
 
     @Override
     public void save(Student student, String[] tagIds) {
         //计算年龄
-        int age = DateUtil.getAge(student.getBir());
-        student.setAge(age);
-        //计算生肖和星座
-        String attr = DateUtil.getYear(Integer.valueOf(new SimpleDateFormat("yyyy").format(student.getBir())));
-        student.setAttr(attr);
-        String starts = DateUtil.getConstellation(student.getBir());
-        student.setStarts(starts);
+        if (student.getBir() != null) {
+            System.out.println("---test"+student.getBir());
+            int age = DateUtil.getAge(student.getBir());
+            student.setAge(age);
+            //计算生肖和星座
+            String attr = DateUtil.getYear(Integer.valueOf(new SimpleDateFormat("yyyy").format(student.getBir())));
+            student.setAttr(attr);
+            String starts = DateUtil.getConstellation(student.getBir());
+            student.setStarts(starts);
+        }
         //保存学生
         studentDAO.save(student);
         //保存学生标签信息
-        for (String tagId : tagIds) {
-            StudentTag studentTag = new StudentTag();
-            studentTag.setStudentid(student.getId());
-            studentTag.setTagid(tagId);
-            studentTagDAO.save(studentTag);
+        if (tagIds != null) {
+            for (String tagId : tagIds) {
+                StudentTag studentTag = new StudentTag();
+                studentTag.setStudentid(student.getId());
+                studentTag.setTagid(tagId);
+                studentTagDAO.save(studentTag);
+            }
         }
 
-        //更新城市人数信息
-        City city = cityDAO.findById(student.getCityid());
-        city.setNumbers(city.getNumbers()+1);
-        cityDAO.update(city);
+        if (student.getCityid() != null) {
+            //更新城市人数信息
+            City city = cityDAO.findById(student.getCityid());
+            city.setNumbers(city.getNumbers()+1);
+            cityDAO.update(city);
+        }
     }
 
     @Override
@@ -109,6 +115,11 @@ public class StudentServiceImpl implements StudentService {
     public void delete(String name, String age, String bir,
                        String phone, String qq, String attr,
                        String starts, String mark, String id){
+
+        Student student = studentDAO.findById(id);
+        City city = cityDAO.findById(student.getCityid());
+        city.setNumbers(city.getNumbers()-1);
+        cityDAO.update(city);
 
         studentDAO.delete(name, age, bir, phone, qq, attr, starts, mark, id);
     }
